@@ -1,14 +1,21 @@
-﻿using Android.App;
-using Android.Widget;
-using Android.OS;
+﻿using Android.Widget;
 using System;
 using LeanplumBindings;
 using Android.Graphics;
 using LeanplumDemo.Common;
+using Android.Content;
+using Android.App;
+using Android.OS;
 
 namespace LeanplumDemo.Droid
 {
     [Activity(Label = "LeanplumDemo.Droid", MainLauncher = true, Icon = "@mipmap/icon")]
+	[IntentFilter(new[] { Intent.ActionView },
+			  Categories = new[] { Intent.CategoryBrowsable, Intent.CategoryDefault },
+			  DataScheme = "http",
+			  DataHost = "deventure.co",
+			  DataPathPrefix = "/deeplink", 
+              AutoVerify =true)]
     public class SignInActivity : Activity
     {
         #region private methods
@@ -38,8 +45,8 @@ namespace LeanplumDemo.Droid
             // Get our button from the layout resource,
             // and attach an event to it
             mBtnSignIn = FindViewById<Button>(Resource.Id.btn_sign_in);
-            mEtEmail = FindViewById<EditText>(Resource.Id.tv_email);
-            mEtPassword = FindViewById<EditText>(Resource.Id.tv_password);
+            mEtEmail = FindViewById<EditText>(Resource.Id.et_email);
+            mEtPassword = FindViewById<EditText>(Resource.Id.et_password);
 
             mBtnSignIn.Click += SignInHandler;
            
@@ -52,6 +59,13 @@ namespace LeanplumDemo.Droid
             {
                 ex.ToString();
             }
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+
+            InitFromDeepLinkingParams();
         }
 
         #region private fields
@@ -82,6 +96,23 @@ namespace LeanplumDemo.Droid
 
 		private void InitFromDeepLinkingParams()
 		{
+			var action = Intent.Action;
+            if(Intent.Data == null)
+            {
+                return;
+            }
+			
+            var parsedOptions = QueryStringHelper.ParseQueryStringForAndroid(Intent.Data.Query);
+			if (parsedOptions.ContainsKey(Constants.EMAIL_KEY))
+			{
+				mEmail = parsedOptions[Constants.EMAIL_KEY];
+			}
+
+			if (parsedOptions.ContainsKey(Constants.PASSWORD_KEY))
+			{
+				mPassword = parsedOptions[Constants.PASSWORD_KEY];
+			}
+
 			if (!string.IsNullOrWhiteSpace(mEmail))
 			{
 				mEtEmail.Text = mEmail;
