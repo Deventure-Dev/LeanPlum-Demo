@@ -1,13 +1,18 @@
 ﻿using System;
 using LeanplumBindings;
+using LeanplumDemo.Common;
 using UIKit;
 
 namespace LeanplumDemo.UI
 {
     public partial class SignInViewController : UIViewController
     {
+        #region private fields
+
         private static readonly LPVar buttonTitle = LPVar.Define("ButtonTitle", "Sign In");
-        private static readonly LPVar buttonColor = LPVar.Define("ButtonColor", UIColor.Blue);
+        private static readonly LPVar buttonColor = LPVar.Define("ButtonColor", Constants.RED_COLOR);
+
+        #endregion
 
         public SignInViewController(IntPtr handle) : base(handle)
         {
@@ -24,7 +29,20 @@ namespace LeanplumDemo.UI
             Leanplum.OnVariablesChanged(() =>
             {
                 btnSignIn.SetTitle(buttonTitle.StringValue, UIControlState.Normal);
-                btnSignIn.SetTitleColor(buttonColor.ColorValue, UIControlState.Normal);
+
+                var buttonColorValue = buttonColor.StringValue;
+				switch (buttonColorValue)
+				{
+					case Constants.RED_COLOR:
+                        btnSignIn.BackgroundColor = UIColor.Red;
+						break;
+					case Constants.GREEN_COLOR:
+                        btnSignIn.BackgroundColor = UIColor.Green; 
+                        break;
+					case Constants.BLUE_COLOR:
+                        btnSignIn.BackgroundColor = UIColor.Blue;
+                        break;
+				}
             });
 
             btnSignIn.TouchUpInside += SignInHandler;
@@ -36,7 +54,7 @@ namespace LeanplumDemo.UI
             // Release any cached data, images, etc that aren't in use.
         }
 
-		#region private fields
+		#region private methods
 
 		private void SignInHandler(object sender, EventArgs e)
 		{

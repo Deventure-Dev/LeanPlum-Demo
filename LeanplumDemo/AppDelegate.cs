@@ -1,5 +1,6 @@
 ﻿using Foundation;
 using LeanplumBindings;
+using LeanplumDemo.Common;
 using UIKit;
 
 namespace LeanplumDemo
