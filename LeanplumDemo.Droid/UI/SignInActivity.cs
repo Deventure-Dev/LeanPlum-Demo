@@ -13,8 +13,12 @@ namespace LeanplumDemo.Droid
     {
         #region private methods
 
-        private int count = 1;
         private Button mBtnSignIn;
+        private EditText mEtEmail;
+        private EditText mEtPassword;
+
+        private string mEmail;
+        private string mPassword;
 
         //private Var welcomeLabel = Var.Define("welcomeLabel", "Welcome!");
         private static readonly Var buttonTitle = Var.Define("ButtonTitle", "Sign In");
@@ -33,11 +37,12 @@ namespace LeanplumDemo.Droid
 
             // Get our button from the layout resource,
             // and attach an event to it
-            mBtnSignIn = FindViewById<Button>(Resource.Id.myButton);
+            mBtnSignIn = FindViewById<Button>(Resource.Id.btn_sign_in);
+            mEtEmail = FindViewById<EditText>(Resource.Id.tv_email);
+            mEtPassword = FindViewById<EditText>(Resource.Id.tv_password);
 
             mBtnSignIn.Click += SignInHandler;
-            //delegate { button.Text = $"{count++} clicks!"; };
-
+           
             try
             {
 				Leanplum.AddVariablesChangedHandler(new CustomVariablesChangedCallback(VariableChanged));
@@ -74,6 +79,19 @@ namespace LeanplumDemo.Droid
         {
             Leanplum.Track("Sign in button clicked");
         }
+
+		private void InitFromDeepLinkingParams()
+		{
+			if (!string.IsNullOrWhiteSpace(mEmail))
+			{
+				mEtEmail.Text = mEmail;
+			}
+
+			if (!string.IsNullOrWhiteSpace(mPassword))
+			{
+				mEtPassword.Text = mPassword;
+			}
+		}
 
         #endregion
 
