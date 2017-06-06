@@ -9,7 +9,6 @@ namespace LeanplumDemo.UI
         private static readonly LPVar buttonTitle = LPVar.Define("ButtonTitle", "Sign In");
         private static readonly LPVar buttonColor = LPVar.Define("ButtonColor", UIColor.Blue);
 
-
         public SignInViewController(IntPtr handle) : base(handle)
         {
         }

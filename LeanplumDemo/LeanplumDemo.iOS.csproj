@@ -118,5 +118,11 @@
   <ItemGroup>
     <BundleResource Include="Resources\Images\logo.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LeanplumDemo.Common\LeanplumDemo.Common.csproj">
+      <Project>{8B1EB266-0B92-4178-A57D-DDBC0CE9B918}</Project>
+      <Name>LeanplumDemo.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
