@@ -38,8 +38,15 @@ namespace LeanplumDemo.Droid
             mBtnSignIn.Click += SignInHandler;
             //delegate { button.Text = $"{count++} clicks!"; };
 
-            Leanplum.AddVariablesChangedHandler(new CustomVariablesChangedCallback(VariableChanged));
-            Leanplum.Start(this);
+            try
+            {
+				Leanplum.AddVariablesChangedHandler(new CustomVariablesChangedCallback(VariableChanged));
+				Leanplum.Start(this);
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+            }
         }
 
         #region private fields
