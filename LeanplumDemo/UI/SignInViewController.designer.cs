@@ -14,8 +14,16 @@ namespace LeanplumDemo.UI
     [Register ("SignInViewController")]
     partial class SignInViewController
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton btnSignIn { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
+            if (btnSignIn != null) {
+                btnSignIn.Dispose ();
+                btnSignIn = null;
+            }
         }
     }
 }
