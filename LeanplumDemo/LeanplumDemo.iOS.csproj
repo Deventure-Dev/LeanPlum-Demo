@@ -96,6 +96,7 @@
     <Folder Include="UI\" />
     <Folder Include="SharedDlls\" />
     <Folder Include="Resources\Images\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -113,6 +114,7 @@
     <Compile Include="UI\SignInViewController.designer.cs">
       <DependentUpon>SignInViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\DictionaryExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Images\logo.png" />

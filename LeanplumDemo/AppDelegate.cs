@@ -1,6 +1,8 @@
-﻿using Foundation;
+﻿using System;
+using Foundation;
 using LeanplumBindings;
 using LeanplumDemo.Common;
+using LeanplumDemo.Helpers;
 using UIKit;
 
 namespace LeanplumDemo
@@ -18,6 +20,11 @@ namespace LeanplumDemo
             set;
         }
 
+        public static string Email { get; private set; }
+        public static string Password { get; private set; }
+
+        public static Action OnOpenFromDeepLinking { get; set; }
+
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
 			// Override point for customization after application launch.
@@ -25,6 +32,24 @@ namespace LeanplumDemo
 
             Leanplum.SetDevelopmentAppId(Constants.LEANPLUM_APP_ID,Constants.LEANPLUM_DEV_APP_KEY);
 			Leanplum.Start();
+
+            return true;
+        }
+
+        public override bool OpenUrl(UIApplication app, NSUrl url, NSDictionary options)
+        {
+            var parsedOptions = QueryStringHelper.ParseQueryString(url.Query);
+            if (parsedOptions.ContainsKey(Constants.EMAIL_KEY))
+            {
+                Email = parsedOptions[Constants.EMAIL_KEY];
+            }
+
+            if (parsedOptions.ContainsKey(Constants.PASSWORD_KEY))
+            {
+                Password = parsedOptions[Constants.PASSWORD_KEY];
+            }
+
+            OnOpenFromDeepLinking?.Invoke();
 
             return true;
         }

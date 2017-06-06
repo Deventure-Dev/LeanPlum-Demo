@@ -11,5 +11,8 @@ namespace LeanplumDemo.Common
         public const string RED_COLOR = "red";
 		public const string GREEN_COLOR = "green";
 		public const string BLUE_COLOR = "blue";
+
+        public const string EMAIL_KEY = "email";
+		public const string PASSWORD_KEY = "password";
     }
 }

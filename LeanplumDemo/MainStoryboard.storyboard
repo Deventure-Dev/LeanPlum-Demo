@@ -39,13 +39,12 @@
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fx3-eR-MB8" misplaced="YES">
                                         <rect key="frame" x="16" y="36" width="279" height="30"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jDo-Ul-F8B" misplaced="YES">
                                         <rect key="frame" x="16" y="103" width="279" height="30"/>
-                                        <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -98,6 +97,8 @@
                     </view>
                     <connections>
                         <outlet property="btnSignIn" destination="0Aa-2T-7o9" id="name-outlet-0Aa-2T-7o9"/>
+                        <outlet property="tf_email" destination="fx3-eR-MB8" id="name-outlet-fx3-eR-MB8"/>
+                        <outlet property="tf_password" destination="jDo-Ul-F8B" id="name-outlet-jDo-Ul-F8B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7" userLabel="First Responder" sceneMemberID="firstResponder"/>

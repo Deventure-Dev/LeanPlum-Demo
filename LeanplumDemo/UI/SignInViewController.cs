@@ -48,17 +48,38 @@ namespace LeanplumDemo.UI
             btnSignIn.TouchUpInside += SignInHandler;
         }
 
-        public override void DidReceiveMemoryWarning()
+        public override void ViewDidAppear(bool animated)
         {
-            base.DidReceiveMemoryWarning();
-            // Release any cached data, images, etc that aren't in use.
-        }
+            base.ViewDidAppear(animated);
+
+			AppDelegate.OnOpenFromDeepLinking  = InitFromDeepLinkingParams;
+		}
+
+        public override void ViewDidDisappear(bool animated)
+        {
+            base.ViewDidDisappear(animated);
+
+			AppDelegate.OnOpenFromDeepLinking = null;
+		}
 
 		#region private methods
 
 		private void SignInHandler(object sender, EventArgs e)
 		{
 			Leanplum.Track("Sign in button clicked");
+		}
+
+	    private void InitFromDeepLinkingParams()
+		{
+            if (!string.IsNullOrWhiteSpace(AppDelegate.Email))
+            {
+                tf_email.Text = AppDelegate.Email;
+            }
+
+            if (!string.IsNullOrWhiteSpace(AppDelegate.Password))
+            {
+                tf_password.Text = AppDelegate.Password;
+            }
 		}
 
         #endregion
