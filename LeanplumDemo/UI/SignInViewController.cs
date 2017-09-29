@@ -71,15 +71,25 @@ namespace LeanplumDemo.UI
 
 	    private void InitFromDeepLinkingParams()
 		{
-            if (!string.IsNullOrWhiteSpace(AppDelegate.Email))
-            {
-                tf_email.Text = AppDelegate.Email;
-            }
+            InvokeOnMainThread(()=>{
+                try
+                {
+                    if (!string.IsNullOrWhiteSpace(AppDelegate.Email))
+                    {
+                        tf_email.Text = AppDelegate.Email;
+                    }
 
-            if (!string.IsNullOrWhiteSpace(AppDelegate.Password))
-            {
-                tf_password.Text = AppDelegate.Password;
-            }
+                    if (!string.IsNullOrWhiteSpace(AppDelegate.Password))
+                    {
+                        tf_password.Text = AppDelegate.Password;
+                    }
+				}
+				catch (Exception ex)
+				{
+					ex.ToString();
+					throw ex;
+				}
+            });
 		}
 
         #endregion
