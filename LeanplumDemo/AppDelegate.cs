@@ -38,7 +38,7 @@ namespace LeanplumDemo
 
         public override bool OpenUrl(UIApplication app, NSUrl url, NSDictionary options)
         {
-            var parsedOptions = QueryStringHelper.ParseQueryString(url.Query);
+            var parsedOptions = QueryStringHelper.ParseQueryString(url.Query, "&");
             if (parsedOptions.ContainsKey(Constants.EMAIL_KEY))
             {
                 Email = parsedOptions[Constants.EMAIL_KEY];

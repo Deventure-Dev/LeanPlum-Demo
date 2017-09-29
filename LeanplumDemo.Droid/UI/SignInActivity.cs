@@ -101,7 +101,7 @@ namespace LeanplumDemo.Droid
 
             try
             {
-                var parsedOptions = QueryStringHelper.ParseQueryStringForAndroid(Intent.Data.Query);
+                var parsedOptions = QueryStringHelper.ParseQueryString(Intent.Data.Query, "===");
                 if (parsedOptions.ContainsKey(Constants.EMAIL_KEY))
                 {
                     mEmail = parsedOptions[Constants.EMAIL_KEY];
