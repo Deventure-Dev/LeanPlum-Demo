@@ -27,11 +27,11 @@ namespace LeanplumDemo
 
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
-			// Override point for customization after application launch.
-			// If not required for your application you can safely delete this method
+            // Override point for customization after application launch.
+            // If not required for your application you can safely delete this method
 
-            Leanplum.SetDevelopmentAppId(Constants.LEANPLUM_APP_ID,Constants.LEANPLUM_DEV_APP_KEY);
-			Leanplum.Start();
+            Leanplum.SetDevelopmentAppId(Constants.LEANPLUM_APP_ID, Constants.LEANPLUM_DEV_APP_KEY);
+            Leanplum.Start();
 
             return true;
         }
@@ -53,6 +53,8 @@ namespace LeanplumDemo
 
             return true;
         }
+
+        #region boiler plate code
 
         public override void OnResignActivation(UIApplication application)
         {
@@ -84,6 +86,9 @@ namespace LeanplumDemo
         {
             // Called when the application is about to terminate. Save data, if needed. See also DidEnterBackground.
         }
+
+        #endregion
+
     }
 }
 

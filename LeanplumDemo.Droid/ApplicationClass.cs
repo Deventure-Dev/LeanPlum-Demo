@@ -41,11 +41,8 @@ namespace LeanplumDemo.Droid
 				LeanplumActivityHelper.EnableLifecycleCallbacks(this);
 
 	            Parser.ParseVariables(this);
-				//Parser.ParseVariablesForClasses(GlobalVariables., SignInActivity.class);
 				Leanplum.EnableVerboseLoggingInDevelopmentMode();
 	            Leanplum.SetAppIdForDevelopmentMode(Constants.LEANPLUM_APP_ID, Constants.LEANPLUM_DEV_APP_KEY);
-
-                //Leanplum.Start(this);
 			}
 			catch (Exception ex)
 			{

@@ -9,14 +9,14 @@ using Android.OS;
 
 namespace LeanplumDemo.Droid
 {
-    [Activity(Label = "Deventure Demo", MainLauncher = true, Icon = "@mipmap/icon")]
+    [Activity(Label = "Deventure Demo 2", Icon = "@mipmap/icon")]
     [IntentFilter(new[] { Intent.ActionView },
               Categories = new[] { Intent.CategoryBrowsable, Intent.CategoryDefault },
               DataScheme = "http",
               DataHost = "deventure.co",
-              DataPathPrefix = "/deeplink",
+              DataPathPrefix = "/deeplink2",
               AutoVerify = true)]
-    public class SignInActivity : Activity
+    public class SecondActivity : Activity
     {
         #region private methods
 

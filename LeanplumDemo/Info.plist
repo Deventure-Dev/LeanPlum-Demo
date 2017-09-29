@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleName</key>
-	<string>leanplum</string>
+	<string>Deventure Demo</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.deventure.leanplum</string>
 	<key>CFBundleShortVersionString</key>

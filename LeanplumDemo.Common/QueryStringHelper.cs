@@ -1,13 +1,11 @@
 ﻿﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
 
 namespace LeanplumDemo.Common
 {
     public class QueryStringHelper
     {
-        public static Dictionary<string, string> ParseQueryString(String query)
+        public static Dictionary<string, string> ParseQueryString(string query)
 		{
             var parameters = new Dictionary<string, string>();
             if(string.IsNullOrWhiteSpace(query))

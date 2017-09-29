@@ -52,7 +52,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\SignInActivity.cs" />
     <Compile Include="ApplicationClass.cs" />
-    <Compile Include="GlobalVariables.cs" />
     <Compile Include="CustomVariablesChangedCallback.cs" />
   </ItemGroup>
   <ItemGroup>
