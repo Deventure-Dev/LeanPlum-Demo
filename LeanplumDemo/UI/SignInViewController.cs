@@ -55,12 +55,12 @@ namespace LeanplumDemo.UI
 			AppDelegate.OnOpenFromDeepLinking  = InitFromDeepLinkingParams;
 		}
 
-        public override void ViewDidDisappear(bool animated)
-        {
-            base.ViewDidDisappear(animated);
+  //      public override void ViewDidDisappear(bool animated)
+  //      {
+  //          base.ViewDidDisappear(animated);
 
-			AppDelegate.OnOpenFromDeepLinking = null;
-		}
+		//	AppDelegate.OnOpenFromDeepLinking = null;
+		//}
 
 		#region private methods
 
@@ -72,23 +72,15 @@ namespace LeanplumDemo.UI
 	    private void InitFromDeepLinkingParams()
 		{
             InvokeOnMainThread(()=>{
-                try
+                if (!string.IsNullOrWhiteSpace(AppDelegate.Email))
                 {
-                    if (!string.IsNullOrWhiteSpace(AppDelegate.Email))
-                    {
-                        tf_email.Text = AppDelegate.Email;
-                    }
+                    tf_email.Text = AppDelegate.Email;
+                }
 
-                    if (!string.IsNullOrWhiteSpace(AppDelegate.Password))
-                    {
-                        tf_password.Text = AppDelegate.Password;
-                    }
-				}
-				catch (Exception ex)
-				{
-					ex.ToString();
-					throw ex;
-				}
+                if (!string.IsNullOrWhiteSpace(AppDelegate.Password))
+                {
+                    tf_password.Text = AppDelegate.Password;
+                }
             });
 		}
 

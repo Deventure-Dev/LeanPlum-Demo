@@ -2,7 +2,6 @@
 using Foundation;
 using LeanplumBindings;
 using LeanplumDemo.Common;
-using LeanplumDemo.Helpers;
 using UIKit;
 
 namespace LeanplumDemo
@@ -31,7 +30,11 @@ namespace LeanplumDemo
             // If not required for your application you can safely delete this method
 
             Leanplum.SetDevelopmentAppId(Constants.LEANPLUM_APP_ID, Constants.LEANPLUM_DEV_APP_KEY);
-            Leanplum.Start();
+
+            //Enable this fro production
+            //Leanplum.SetProductionAppId(Constants.LEANPLUM_APP_ID, Constants.LEANPLUM_PROD_APP_KEY);
+
+			Leanplum.Start();
 
             return true;
         }

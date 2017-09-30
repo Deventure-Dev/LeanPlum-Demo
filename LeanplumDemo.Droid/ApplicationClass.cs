@@ -35,20 +35,16 @@ namespace LeanplumDemo.Droid
 
         private void InitLeanplum()
         {
-            try
-            {
-	            Leanplum.SetApplicationContext(this);
-				LeanplumActivityHelper.EnableLifecycleCallbacks(this);
+            Leanplum.SetApplicationContext(this);
+            LeanplumActivityHelper.EnableLifecycleCallbacks(this);
 
-	            Parser.ParseVariables(this);
-				Leanplum.EnableVerboseLoggingInDevelopmentMode();
-	            Leanplum.SetAppIdForDevelopmentMode(Constants.LEANPLUM_APP_ID, Constants.LEANPLUM_DEV_APP_KEY);
-			}
-			catch (Exception ex)
-			{
-                ex.ToString();
-			}
-         }
+            Parser.ParseVariables(this);
+            Leanplum.EnableVerboseLoggingInDevelopmentMode();
+            Leanplum.SetAppIdForDevelopmentMode(Constants.LEANPLUM_APP_ID, Constants.LEANPLUM_DEV_APP_KEY);
+
+            //Enable this for Production
+            //Leanplum.SetAppIdForProductionMode(Constants.LEANPLUM_APP_ID, Constants.LEANPLUM_PROD_APP_KEY);
+        }
 
         #endregion
     }

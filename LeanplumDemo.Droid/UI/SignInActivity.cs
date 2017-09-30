@@ -47,15 +47,8 @@ namespace LeanplumDemo.Droid
 
             mBtnSignIn.Click += SignInHandler;
 
-            try
-            {
-                Leanplum.AddVariablesChangedHandler(new CustomVariablesChangedCallback(VariableChanged));
-                Leanplum.Start(this);
-            }
-            catch (Exception ex)
-            {
-                ex.ToString();
-            }
+            Leanplum.AddVariablesChangedHandler(new CustomVariablesChangedCallback(VariableChanged));
+            Leanplum.Start(this);
         }
 
         protected override void OnResume()
@@ -69,9 +62,9 @@ namespace LeanplumDemo.Droid
 
         private void VariableChanged()
         {
-            mBtnSignIn.Text = buttonTitle.StringValue();
+            mBtnSignIn.Text = buttonTitle?.StringValue();
 
-            var buttonColorValue = buttonColor.StringValue();
+            var buttonColorValue = buttonColor?.StringValue();
             switch (buttonColorValue)
             {
                 case Constants.RED_COLOR:
@@ -99,33 +92,25 @@ namespace LeanplumDemo.Droid
                 return;
             }
 
-            try
+            var parsedOptions = QueryStringHelper.ParseQueryString(Intent.Data.Query, "===");
+            if (parsedOptions.ContainsKey(Constants.EMAIL_KEY))
             {
-                var parsedOptions = QueryStringHelper.ParseQueryString(Intent.Data.Query, "===");
-                if (parsedOptions.ContainsKey(Constants.EMAIL_KEY))
-                {
-                    mEmail = parsedOptions[Constants.EMAIL_KEY];
-                }
-
-                if (parsedOptions.ContainsKey(Constants.PASSWORD_KEY))
-                {
-                    mPassword = parsedOptions[Constants.PASSWORD_KEY];
-                }
-
-                if (!string.IsNullOrWhiteSpace(mEmail))
-                {
-                    mEtEmail.Text = mEmail;
-                }
-
-                if (!string.IsNullOrWhiteSpace(mPassword))
-                {
-                    mEtPassword.Text = mPassword;
-                }
+                mEmail = parsedOptions[Constants.EMAIL_KEY];
             }
-            catch (Exception ex)
+
+            if (parsedOptions.ContainsKey(Constants.PASSWORD_KEY))
             {
-                ex.ToString();
-                throw ex;
+                mPassword = parsedOptions[Constants.PASSWORD_KEY];
+            }
+
+            if (!string.IsNullOrWhiteSpace(mEmail))
+            {
+                mEtEmail.Text = mEmail;
+            }
+
+            if (!string.IsNullOrWhiteSpace(mPassword))
+            {
+                mEtPassword.Text = mPassword;
             }
 		}
 

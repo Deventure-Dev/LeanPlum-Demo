@@ -8,12 +8,12 @@ namespace LeanplumDemo.Common
         public static Dictionary<string, string> ParseQueryString(string query, string separator)
 		{
             var parameters = new Dictionary<string, string>();
-            if(string.IsNullOrWhiteSpace(query))
+            if(string.IsNullOrWhiteSpace(query) || string.IsNullOrWhiteSpace(separator))
             {
                 return parameters;
             }
 
-            var items = query.Split(new[] { separator }, StringSplitOptions.None);
+            var items = query.Split(new[] { separator }, StringSplitOptions.RemoveEmptyEntries);
             if(items == null || items.Length == 0)
             {
                 return parameters;
